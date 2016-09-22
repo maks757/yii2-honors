@@ -1,0 +1,25 @@
+{
+    "name": "maks757/yii2-honors",
+    "description": "This component allows users to work with the achievements.",
+    "keywords": ["yii2", "honors", "module honors", "component honors", "maks757"],
+    "type": "yii2-extension",
+    "license": "GNU Public License",
+    "support": {
+        "source": "https://github.com/maks757/yii2-honors"
+    },
+    "require": {
+        "yiisoft/yii2": ">=2.0.4",
+        "black-lamp/yii2-imagable": "*"
+    },
+    "authors": [
+        {
+            "name": "Maxim Cherednyk",
+            "email": "maks757q@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "bl\\honors\\": ""
+        }
+    }
+}
