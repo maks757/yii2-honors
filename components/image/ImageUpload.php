@@ -29,7 +29,10 @@ class ImageUpload extends Model
     {
         if ($this->validate() && !empty($this->image)) {
             $newImageName = Yii::$app->security->generateRandomString(16);
-            $tmpFilePath = BaseFileHelper::normalizePath(Yii::getAlias('@vendor/maks757/yii2-honors/components/image/tmp/').$newImageName.'.'.$this->image->extension);
+            if(!is_dir(Yii::getAlias('@frontend/web/tmp/'))){
+                BaseFileHelper::createDirectory(Yii::getAlias('@frontend/web/tmp/'));
+            }
+            $tmpFilePath = BaseFileHelper::normalizePath(Yii::getAlias('@frontend/web/tmp/').$newImageName.'.'.$this->image->extension);
             $this->image->saveAs($tmpFilePath);
             /** @var $imagable BaseImagable */
             $imagable = Yii::$app->imagableHonor;
