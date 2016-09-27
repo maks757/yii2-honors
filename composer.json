@@ -9,7 +9,10 @@
     },
     "require": {
         "yiisoft/yii2": ">=2.0.4",
-        "black-lamp/yii2-imagable": "*"
+        "black-lamp/yii2-imagable": "*",
+        "2amigos/yii2-tinymce-widget": "~1.1.1",
+        "black-lamp/yii2-multi-lang": "1.*",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "authors": [
         {
