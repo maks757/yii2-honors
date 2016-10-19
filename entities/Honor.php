@@ -74,11 +74,11 @@ class Honor extends \yii\db\ActiveRecord
         return $this->hasMany(HonorTranslation::className(), ['honor_id' => 'id']);
     }
 
-    public function getImage($image_name, $category, $type)
+    public function getImage($image_name, $type = 'short')
     {
         /**@var BaseImagable $imagine */
         $imagine = \Yii::$app->imagableHonor;
-        $imagePath = $imagine->get($category, $type, $image_name);
+        $imagePath = $imagine->get('honor', $type, $image_name);
         $aliasPath = BaseFileHelper::normalizePath(Yii::getAlias('@frontend/web'));
         $image = str_replace($aliasPath,'',$imagePath);
         return $image;
