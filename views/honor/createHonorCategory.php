@@ -50,6 +50,8 @@ use yii\helpers\Url;
                 <a href="<?= Url::toRoute(['/honor']) ?>" class="btn btn-xs btn-warning">Add new honor</a>
             <?php endif; ?>
 
+            <a href="<?= Url::toRoute(['/honor/honor/user']) ?>" class="btn btn-xs btn-warning">User honors</a>
+
             <?= $form->field($honor_translation, 'name')
                 ->textInput() ?>
 
@@ -84,7 +86,7 @@ use yii\helpers\Url;
             <?= $form->field($honor_image, 'image')
                 ->fileInput() ?>
 
-            <?= \yii\helpers\Html::submitButton() ?>
+            <?= \yii\helpers\Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
 
         <?php \yii\widgets\ActiveForm::end() ?>
     </div>

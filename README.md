@@ -59,39 +59,34 @@ url to list honor = admin panel url + /honor/honor/list
 url to create honor = admin panel url + /honor
 url to list user honor = admin panel url + /honor/honor/user
 #### Using
-![Alt text](/image/img1.PNG "Optional title")
-```php
-    /**
-    *@var Progress $progress
-    */
-    $progress = Yii::$app->progress;
-```
-and
-```php 
-    // First variant
-    // 1 param ( progress category )
-    // 2 param ( user id )
-    $progress->validateOne('userConfirm', 1);
-```
-or  
-```php
-    // Second variant
-    // 1 param ( progress category )
-    // its use current user id
-    $progress->validate('userConfirm');
-```
+Go to add new honor
+![Alt text](/image/img1.PNG "Go to add new honor")
+and add new honor
+![Alt text](/image/img2.PNG "Add new honor")
+and add honor to user
+![Alt text](/image/img3.PNG "Add honor to user")
 #### Using example
 ```php
-$userProgress = \bl\progress\entities\UserProgress::getUserProgress($userRegisterInfo->id);
-foreach ($userProgress as $value)
-{
-    /** *@var Progress $progress */
-    $progress = Yii::$app->progress;
-    $pathImage = $progress->getImage($value->image->image, 'progress', 'short');
-
-    $content = Html::tag('h3', $value->name);
-    $content .= Html::img($pathImage);
-    echo Html::tag('div', $content, ['class' => 'col-sm-2']);
-}
+//action 
+//honors
+    $honors = HonorUser::find()->where(['user_id' => $userId])->with(['honor.translations'])->all();
+//
+//view
+<?php if (!empty($honors)): ?>
+    <div class="col-md-12">
+            <h3 class="about-user">Honors:</h3>
+        <div class="row text-center" style="padding: 2px 10px;">
+            <?php /** @var $honor \bl\honors\entities\HonorUser*/?>
+            <?php foreach ($honors as $honor): ?>
+                <div class="col-xs-4 col-sm-3 col-md-1" style="padding: 0;">
+                    <img src="<?= $honor->honor->getImage($honor->honor->image) ?>"
+                         width="50" height="50"
+                         data-toggle="tooltip" data-placement="top"
+                         data-original-title="<?= $honor->honor->translation->name ?>">
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
 ```
 ![Alt text](/image/author.jpg "Optional title")
