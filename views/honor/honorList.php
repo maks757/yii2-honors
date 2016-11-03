@@ -49,7 +49,7 @@ use yii\widgets\LinkPager;
                                 </a>
                             <?php endforeach ?>
                         </td>
-                        <td><?= \yii\helpers\Html::img(Yii::$app->urlManagerFrontend->createAbsoluteUrl($honor->getImage($honor->image, 'honor', 'short'))) ?></td>
+                        <td><?= \yii\helpers\Html::img(Yii::$app->urlManagerFrontend->createAbsoluteUrl($honor->getImage($honor->image))) ?></td>
                         <td>
                             <a class="btn btn-xs btn-primary" href="<?= Url::toRoute(['/honor', 'honorId' => $honor->id])?>">Edit</a>
                             <a class="btn btn-xs btn-success" href="<?= Url::toRoute(['/honor/honor/honor-delete', 'honorId' => $honor->id])?>">Delete</a>
