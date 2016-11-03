@@ -82,7 +82,7 @@ and add honor to user
                     <img src="<?= $honor->honor->getImage($honor->honor->image) ?>"
                          width="50" height="50"
                          data-toggle="tooltip" data-placement="top"
-                         data-original-title="<?= $honor->honor->translation->name ?>">
+                         title="<?= $honor->honor->translation->name ?>">
                 </div>
             <?php endforeach; ?>
         </div>
