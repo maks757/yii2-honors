@@ -17,12 +17,13 @@ use yii\widgets\LinkPager;
         </h3>
     </div>
     <div class="panel-body">
+        <?php $email = User::findOne($user_id)->email; ?>
         <?php $form = \yii\widgets\ActiveForm::begin() ?>
 
             <?=
                 $form->field($userHonor, 'user_id')->widget(Select2::classname(), [
-                    'initValueText' => User::findOne(['id' => $userHonor->id])->email,
-                    'options' => ['placeholder' => 'Search for a city ...', 'id' => 'country'],
+                    'initValueText' => !empty($email) ? $email : 'Empty',
+                    'options' => ['placeholder' => 'Search for a user...'],
                     'pluginOptions' => [
                         'allowClear' => true,
                         'minimumInputLength' => 1,
@@ -34,12 +35,12 @@ use yii\widgets\LinkPager;
                             'dataType' => 'json',
                         ]
                     ],
-                ])
+                ])->label('User')
             ?>
 
-            <?= $form->field($userHonor, 'honor_id')->dropDownList(ArrayHelper::map($honors, 'id', 'translation.name'))?>
+            <?= $form->field($userHonor, 'honor_id')->dropDownList(ArrayHelper::map($honors, 'id', 'translation.name'))->label('Honor')?>
 
-        <?= \yii\helpers\Html::submitButton() ?>
+        <?= \yii\helpers\Html::submitButton('Save', ['class' => 'btn btn-warning']) ?>
 
         <?php \yii\widgets\ActiveForm::end() ?>
 
@@ -48,8 +49,8 @@ use yii\widgets\LinkPager;
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>User id</th>
-                    <th>User name</th>
+                    <th>Id</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Honor</th>
                     <th></th>

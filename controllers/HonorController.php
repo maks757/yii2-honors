@@ -133,12 +133,12 @@ class HonorController extends Controller
             ->all();
 
         ArrayHelper::multisort($all_honor_user, 'user_id');
-
         return $this->render('userHonor',[
             'userHonor' => $userHonor,
             'honors' => Honor::find()->all(),
             'honor_user' => $all_honor_user,
-            'pages' => $pages
+            'pages' => $pages,
+            'user_id' => $userHonor->user_id
         ]);
     }
 

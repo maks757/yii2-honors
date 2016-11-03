@@ -77,10 +77,9 @@ use yii\helpers\Url;
                     ]
                 ]) ?>
 
-            <?php
-                $honorImage = $honor->getImage($honor->image, 'honor', 'short');
-                if($honorImage): ?>
-            <?= \yii\helpers\Html::img(Yii::$app->urlManagerFrontend->createAbsoluteUrl($honorImage))?>
+            <?php $honorImage = $honor->getImage($honor->image); ?>
+            <?php if(!empty($honorImage)): ?>
+                <?= \yii\helpers\Html::img($honorImage)?>
             <?php endif; ?>
 
             <?= $form->field($honor_image, 'image')

@@ -38,20 +38,22 @@ use yii\widgets\LinkPager;
                         <td><?= $honor->translation->long_description ?></td>
                         <td>
                             <?php $translations = ArrayHelper::index($honor->translations, 'language.lang_id'); ?>
+                            <?php $current_language = null; ?>
                             <?php foreach ($languages as $language): ?>
                                 <a href="<?= Url::toRoute([
                                     '/honor/honor/index',
                                     'honorId' => $honor->id,
                                     'languageId' => $language->id
                                 ]) ?>"
-                                   class="btn btn-xs btn-<?= $translations[$language->lang_id] ? 'primary' : 'danger' ?>">
+                                   class="btn btn-xs btn-<?= !empty($translations[$language->lang_id]) ? 'primary' : 'danger' ?>">
                                     <?= Yii::t('common', $language->name) ?>
                                 </a>
+                                <?php !empty($translations[$language->lang_id]) && empty($current_language) ? $current_language = $language : null ?>
                             <?php endforeach ?>
                         </td>
-                        <td><?= \yii\helpers\Html::img(Yii::$app->urlManagerFrontend->createAbsoluteUrl($honor->getImage($honor->image))) ?></td>
+                        <td><?= \yii\helpers\Html::img(Yii::$app->urlManagerFrontend->createAbsoluteUrl($honor->getImage($honor->image)),['width' => 50, 'height' => 50]) ?></td>
                         <td>
-                            <a class="btn btn-xs btn-primary" href="<?= Url::toRoute(['/honor', 'honorId' => $honor->id])?>">Edit</a>
+                            <a class="btn btn-xs btn-primary" href="<?= Url::toRoute(['/honor', 'honorId' => $honor->id, 'languageId' => $current_language->id ])?>">Edit</a>
                             <a class="btn btn-xs btn-success" href="<?= Url::toRoute(['/honor/honor/honor-delete', 'honorId' => $honor->id])?>">Delete</a>
                         </td>
                     </tr>
